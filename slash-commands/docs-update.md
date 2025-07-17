@@ -6,7 +6,7 @@ You are tasked with updating project documentation based on recent git history a
 
 1. **Analyze git history** to identify significant changes
 2. **Update relevant documentation** based on changes found
-3. **Refresh the RECENT_CHANGES.md** document
+3. **Refresh the recent-changes.md** document
 4. **Ensure documentation accuracy** with current codebase
 
 ## Step-by-Step Process
@@ -19,23 +19,23 @@ You are tasked with updating project documentation based on recent git history a
 
 ### 2. Documentation Impact Assessment
 For each significant change, determine which documentation needs updates:
-- **New features** → Update PROJECT_OVERVIEW.md, KEY_COMPONENTS.md, relevant guides
-- **API changes** → Update API_REFERENCE.md, examples
-- **Configuration changes** → Update DEVELOPMENT_SETUP.md, DEPLOYMENT_GUIDE.md
-- **New dependencies** → Update DEVELOPMENT_SETUP.md, PROJECT_OVERVIEW.md
-- **Bug fixes** → Update TROUBLESHOOTING.md if relevant
+- **New features** → Update project-overview.md, key-components.md, relevant guides
+- **API changes** → Update api-reference.md, examples
+- **Configuration changes** → Update development-setup.md, deployment-guide.md
+- **New dependencies** → Update development-setup.md, project-overview.md
+- **Bug fixes** → Update troubleshooting.md if relevant
 - **Performance improvements** → Update relevant architecture documents
 
 ### 3. Update Documentation Files
-- **PROJECT_OVERVIEW.md**: Update features, architecture, tech stack
-- **DEVELOPMENT_SETUP.md**: Update dependencies, setup steps, commands
-- **KEY_COMPONENTS.md**: Update component descriptions, new components
-- **API_REFERENCE.md**: Update endpoints, parameters, examples
-- **DEPLOYMENT_GUIDE.md**: Update deployment processes, environments
-- **TROUBLESHOOTING.md**: Add new known issues and solutions
+- **project-overview.md**: Update features, architecture, tech stack
+- **development-setup.md**: Update dependencies, setup steps, commands
+- **key-components.md**: Update component descriptions, new components
+- **api-reference.md**: Update endpoints, parameters, examples
+- **deployment-guide.md**: Update deployment processes, environments
+- **troubleshooting.md**: Add new known issues and solutions
 - **Project-specific docs**: Update based on relevant changes
 
-### 4. Update RECENT_CHANGES.md
+### 4. Update recent-changes.md
 Create comprehensive changelog with:
 - **Recent Updates**: Last 30 days of significant changes
 - **New Features**: Added functionality with descriptions

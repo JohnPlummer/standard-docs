@@ -44,20 +44,20 @@ Rate documentation on:
 ### Document Categories to Review:
 
 #### Essential Documentation:
-- **PROJECT_OVERVIEW.md**: Project description, goals, architecture
-- **DEVELOPMENT_SETUP.md**: Setup instructions, dependencies
-- **KEY_COMPONENTS.md**: Main modules and their purposes
-- **DEPLOYMENT_GUIDE.md**: Deployment processes and environments
-- **TROUBLESHOOTING.md**: Common issues and solutions
-- **RECENT_CHANGES.md**: Recent updates and changelog
+- **project-overview.md**: Project description, goals, architecture
+- **development-setup.md**: Setup instructions, dependencies
+- **key-components.md**: Main modules and their purposes
+- **deployment-guide.md**: Deployment processes and environments
+- **troubleshooting.md**: Common issues and solutions
+- **recent-changes.md**: Recent updates and changelog
 
 #### Project-Specific Documentation:
-- **Backend API**: API_REFERENCE.md, DATABASE_SCHEMA.md
-- **Frontend**: COMPONENT_LIBRARY.md, ROUTING_GUIDE.md
-- **Service**: SERVICE_ARCHITECTURE.md
-- **Mobile**: PLATFORM_GUIDES.md
-- **Library**: PACKAGE_USAGE.md
-- **Monorepo**: WORKSPACE_STRUCTURE.md, CROSS_PACKAGE_DEPENDENCIES.md
+- **Backend API**: api-reference.md, database-schema.md
+- **Frontend**: component-library.md, routing-guide.md
+- **Service**: service-architecture.md
+- **Mobile**: platform-guides.md
+- **Library**: package-usage.md
+- **Monorepo**: workspace-structure.md, cross-package-dependencies.md
 
 #### Process Documentation:
 - **README.md**: Project introduction and quick start

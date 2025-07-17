@@ -20,13 +20,13 @@ You are tasked with setting up a comprehensive documentation system for this pro
 ### 2. Documentation Setup
 - Create a `docs/` directory if it doesn't exist
 - Generate appropriate documentation files based on project type:
-  - **All Projects**: PROJECT_OVERVIEW.md, DEVELOPMENT_SETUP.md, KEY_COMPONENTS.md, DEPLOYMENT_GUIDE.md, TROUBLESHOOTING.md, RECENT_CHANGES.md
-  - **Backend API**: API_REFERENCE.md, DATABASE_SCHEMA.md
-  - **Frontend Web App**: COMPONENT_LIBRARY.md, ROUTING_GUIDE.md
-  - **Service**: SERVICE_ARCHITECTURE.md
-  - **Mobile App**: PLATFORM_GUIDES.md
-  - **Library**: PACKAGE_USAGE.md
-  - **Monorepo**: WORKSPACE_STRUCTURE.md, CROSS_PACKAGE_DEPENDENCIES.md
+  - **All Projects**: project-overview.md, development-setup.md, key-components.md, deployment-guide.md, troubleshooting.md, recent-changes.md
+  - **Backend API**: api-reference.md, database-schema.md
+  - **Frontend Web App**: component-library.md, routing-guide.md
+  - **Service**: service-architecture.md
+  - **Mobile App**: platform-guides.md
+  - **Library**: package-usage.md
+  - **Monorepo**: workspace-structure.md, cross-package-dependencies.md
 
 ### 3. Content Generation
 For each document:

@@ -10,36 +10,36 @@
 This project uses a structured documentation system. When helping with this project, **always refer to the relevant documentation files** rather than making assumptions.
 
 ### Core Documentation Files
-- **[docs/PROJECT_OVERVIEW.md](docs/PROJECT_OVERVIEW.md)** - **Start here** for project architecture, goals, and technical overview
-- **[docs/DEVELOPMENT_SETUP.md](docs/DEVELOPMENT_SETUP.md)** - **Essential** for environment setup, dependencies, and getting started
-- **[docs/KEY_COMPONENTS.md](docs/KEY_COMPONENTS.md)** - **Reference** for main modules, their responsibilities, and relationships
-- **[docs/DEPLOYMENT_GUIDE.md](docs/DEPLOYMENT_GUIDE.md)** - **Use** for deployment processes, environments, and procedures
-- **[docs/TROUBLESHOOTING.md](docs/TROUBLESHOOTING.md)** - **Check first** for common issues and debugging approaches
-- **[docs/RECENT_CHANGES.md](docs/RECENT_CHANGES.md)** - **Review** for recent updates and changelog
+- **[docs/project-overview.md](docs/project-overview.md)** - **Start here** for project architecture, goals, and technical overview
+- **[docs/development-setup.md](docs/development-setup.md)** - **Essential** for environment setup, dependencies, and getting started
+- **[docs/key-components.md](docs/key-components.md)** - **Reference** for main modules, their responsibilities, and relationships
+- **[docs/deployment-guide.md](docs/deployment-guide.md)** - **Use** for deployment processes, environments, and procedures
+- **[docs/troubleshooting.md](docs/troubleshooting.md)** - **Check first** for common issues and debugging approaches
+- **[docs/recent-changes.md](docs/recent-changes.md)** - **Review** for recent updates and changelog
 
 ## AI Assistant Guidelines
 
 ### Before Making Any Changes
-1. **Read PROJECT_OVERVIEW.md** to understand the project's purpose and architecture
-2. **Check DEVELOPMENT_SETUP.md** for project-specific setup and commands
-3. **Review KEY_COMPONENTS.md** to understand how components relate to each other
-4. **Look at RECENT_CHANGES.md** to understand recent project evolution
+1. **Read project-overview.md** to understand the project's purpose and architecture
+2. **Check development-setup.md** for project-specific setup and commands
+3. **Review key-components.md** to understand how components relate to each other
+4. **Look at recent-changes.md** to understand recent project evolution
 
 ### When Adding Features
-1. **Follow established patterns** found in KEY_COMPONENTS.md
+1. **Follow established patterns** found in key-components.md
 2. **Update relevant documentation** - don't leave docs out of sync
-3. **Check DEPLOYMENT_GUIDE.md** if changes affect deployment
-4. **Add any new issues to TROUBLESHOOTING.md** if they might affect others
+3. **Check deployment-guide.md** if changes affect deployment
+4. **Add any new issues to troubleshooting.md** if they might affect others
 
 ### When Fixing Bugs
-1. **Check TROUBLESHOOTING.md first** - solution might already be documented
-2. **Understand root cause** using project architecture from PROJECT_OVERVIEW.md
-3. **Update TROUBLESHOOTING.md** with new solutions for future reference
-4. **Update RECENT_CHANGES.md** with the fix details
+1. **Check troubleshooting.md first** - solution might already be documented
+2. **Understand root cause** using project architecture from project-overview.md
+3. **Update troubleshooting.md** with new solutions for future reference
+4. **Update recent-changes.md** with the fix details
 
 ### When Updating Documentation
 1. **Keep information in the right place** - don't duplicate across files
-2. **Update RECENT_CHANGES.md** when making significant doc changes
+2. **Update recent-changes.md** when making significant doc changes
 3. **Cross-reference related information** instead of copying it
 4. **Maintain consistency** with existing documentation style and structure
 
@@ -63,11 +63,11 @@ This project uses a structured documentation system. When helping with this proj
 - **Always verify** information against current codebase - don't rely on assumptions
 - **Refer to documentation** rather than duplicating information
 - **Update documentation** when making changes that affect setup, architecture, or usage
-- **Follow established patterns** shown in existing code and documented in KEY_COMPONENTS.md
+- **Follow established patterns** shown in existing code and documented in key-components.md
 - **Consider security implications** for all changes, especially in production systems
 
 ### Common Patterns to Follow
-(Reference KEY_COMPONENTS.md for detailed patterns)
+(Reference key-components.md for detailed patterns)
 - **Code Organization**: {{CODE_ORGANIZATION_PATTERN}}
 - **Error Handling**: {{ERROR_HANDLING_PATTERN}}
 - **Testing Approach**: {{TESTING_APPROACH}}
