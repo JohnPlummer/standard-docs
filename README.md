@@ -17,7 +17,7 @@ Standard Docs provides Claude with the knowledge and templates needed to automat
 
 ## Supported Project Types
 
-- **Backend APIs** - REST, GraphQL, gRPC APIs with endpoint documentation
+- **Backend APIs** - REST, GraphQL, gRPC APIs with endpoint documentation and OpenAPI 3.0 specification support
 - **Frontend Web Apps** - React, Vue, Angular applications with component libraries  
 - **Services** - Microservices, background workers, and distributed systems
 - **Mobile Apps** - React Native, Flutter, and native mobile applications
@@ -36,7 +36,6 @@ This installs:
 
 - Claude slash commands in `.claude/slash-commands/`
 - Documentation templates in `.standard-docs-templates/`
-- A `.gitignore` file (if not present)
 
 ### Using the Slash Commands
 
@@ -73,21 +72,21 @@ Analyze existing documentation quality. Claude will:
 
 ### Core Files (All Projects)
 
-- `PROJECT_OVERVIEW.md` - Project description, goals, and architecture
-- `DEVELOPMENT_SETUP.md` - Environment setup and dependencies
-- `KEY_COMPONENTS.md` - Main modules and their purposes
-- `DEPLOYMENT_GUIDE.md` - Deployment processes and environments
-- `TROUBLESHOOTING.md` - Common issues and solutions
-- `RECENT_CHANGES.md` - Changelog and recent updates
+- `project-overview.md` - Project description, goals, and architecture
+- `development-setup.md` - Environment setup and dependencies
+- `key-components.md` - Main modules and their purposes
+- `deployment-guide.md` - Deployment processes and environments
+- `troubleshooting.md` - Common issues and solutions
+- `recent-changes.md` - Changelog and recent updates
 
 ### Project-Specific Files
 
-- **Backend APIs**: `API_REFERENCE.md`, `DATABASE_SCHEMA.md`
-- **Frontend Apps**: `COMPONENT_LIBRARY.md`, `ROUTING_GUIDE.md`
-- **Services**: `SERVICE_ARCHITECTURE.md`
-- **Mobile Apps**: `PLATFORM_GUIDES.md`
-- **Libraries**: `PACKAGE_USAGE.md`
-- **Monorepos**: `WORKSPACE_STRUCTURE.md`, `CROSS_PACKAGE_DEPENDENCIES.md`
+- **Backend APIs**: `api-reference.md`, `database-schema.md` (with OpenAPI 3.0 support)
+- **Frontend Apps**: `component-library.md`, `routing-guide.md`
+- **Services**: `service-architecture.md`
+- **Mobile Apps**: `platform-guides.md`
+- **Libraries**: `package-usage.md`
+- **Monorepos**: `workspace-structure.md`, `cross-package-dependencies.md`
 
 ## How It Works
 
@@ -134,8 +133,8 @@ If you prefer not to use the install script:
 Claude will detect it's a React app and create:
 
 - Core documentation files
-- `COMPONENT_LIBRARY.md` with component documentation
-- `ROUTING_GUIDE.md` with routing information
+- `component-library.md` with component documentation
+- `routing-guide.md` with routing information
 
 ### Updating Documentation After Changes
 

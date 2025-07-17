@@ -82,7 +82,7 @@ This project uses {{CI_CD_PLATFORM}} for automated deployments.
 {{/each}}
 
 ## Troubleshooting Deployment Issues
-Common deployment problems and solutions can be found in [TROUBLESHOOTING.md](./TROUBLESHOOTING.md#deployment-issues).
+Common deployment problems and solutions can be found in [troubleshooting.md](./troubleshooting.md#deployment-issues).
 
 ---
 *Last updated: {{TIMESTAMP}}*

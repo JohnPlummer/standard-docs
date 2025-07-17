@@ -26,14 +26,14 @@
 ```
 
 ## Getting Started
-For development setup instructions, see [DEVELOPMENT_SETUP.md](./DEVELOPMENT_SETUP.md).
+For development setup instructions, see [development-setup.md](./development-setup.md).
 
 ## Related Documentation
-- [Development Setup](./DEVELOPMENT_SETUP.md)
-- [Key Components](./KEY_COMPONENTS.md)
-- [API Reference](./API_REFERENCE.md) {{#if HAS_API}}{{/if}}
-- [Deployment Guide](./DEPLOYMENT_GUIDE.md)
-- [Troubleshooting](./TROUBLESHOOTING.md)
+- [Development Setup](./development-setup.md)
+- [Key Components](./key-components.md)
+- [API Reference](./api-reference.md) {{#if HAS_API}}{{/if}}
+- [Deployment Guide](./deployment-guide.md)
+- [Troubleshooting](./troubleshooting.md)
 
 ## Contact & Support
 <!-- Project maintainers, support channels, etc. -->

@@ -77,7 +77,7 @@ This project includes VS Code configuration in `.vscode/`. Recommended extension
 {{/if}}
 
 ## Troubleshooting
-For common development issues, see [TROUBLESHOOTING.md](./TROUBLESHOOTING.md).
+For common development issues, see [troubleshooting.md](./troubleshooting.md).
 
 ## Contributing
 <!-- Link to contributing guidelines -->
