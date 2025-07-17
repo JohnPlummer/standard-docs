@@ -3,44 +3,57 @@
 ## Installation
 
 ### Package Manager
+
 {{#each PACKAGE_MANAGERS}}
 #### {{name}}
+
 ```bash
 {{installCommand}}
 ```
+
 {{/each}}
 
 ### CDN
+
 {{#if HAS_CDN}}
+
 ```html
 <script src="{{CDN_URL}}"></script>
 ```
+
 {{/if}}
 
 ## Getting Started
 
 ### Basic Usage
+
 ```javascript
 {{BASIC_USAGE_EXAMPLE}}
 ```
 
 ### Configuration
+
 {{#if HAS_CONFIG}}
+
 ```javascript
 {{CONFIG_EXAMPLE}}
 ```
 
 **Configuration Options:**
+
 {{#each CONFIG_OPTIONS}}
 - `{{name}}` ({{type}}) - {{description}} {{#if defaultValue}}(Default: {{defaultValue}}){{/if}}
 {{/each}}
+
 {{/if}}
 
 ## API Reference
 
 ### Core API
+
 {{#each CORE_API}}
 #### {{name}}
+
 {{#if description}}
 {{description}}
 {{/if}}

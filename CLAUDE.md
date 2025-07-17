@@ -9,6 +9,7 @@ Standard-docs is a Node.js CLI tool that automatically generates and maintains c
 ## Commands
 
 ### Development
+
 ```bash
 # Install dependencies
 npm install
@@ -27,6 +28,7 @@ npm run update
 ```
 
 ### Testing and Validation
+
 ```bash
 # Test the installation script
 ./install.sh
@@ -65,6 +67,7 @@ node scripts/detect-project-type.js examples/monorepo-example
 ### Template Variable System
 
 Common variables available in all templates:
+
 - `{{project_name}}` - From package.json name field
 - `{{project_type}}` - Detected project type
 - `{{framework}}` - Detected framework (React, Vue, Express, etc.)
@@ -75,6 +78,7 @@ Common variables available in all templates:
 ### Project Detection Logic
 
 The detector analyzes in this order:
+
 1. package.json dependencies and scripts
 2. File patterns (e.g., `app.js` → backend, `index.html` → frontend)
 3. Directory structure (e.g., `components/` → frontend, `models/` → backend)
@@ -94,6 +98,7 @@ Returns highest confidence match with detailed reasoning.
 ## Working with Templates
 
 When modifying templates:
+
 1. Shared templates in `templates/shared/` apply to all project types
 2. Project-specific templates override shared ones
 3. Use Handlebars syntax for variables: `{{variable_name}}`

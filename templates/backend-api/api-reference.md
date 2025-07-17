@@ -1,9 +1,11 @@
 # {{PROJECT_NAME}} - API Reference
 
 {{#if HAS_OPENAPI_SPEC}}
+
 ## OpenAPI Specification
 
 This API is documented using OpenAPI 3.0. The complete specification is available at:
+
 - **Spec File**: `{{OPENAPI_SPEC_PATH}}`
 - **Interactive Documentation**: {{#if SWAGGER_UI_URL}}[Swagger UI]({{SWAGGER_UI_URL}}){{/if}}{{#if REDOC_URL}}[ReDoc]({{REDOC_URL}}){{/if}}
 
@@ -14,6 +16,7 @@ This API is documented using OpenAPI 3.0. The complete specification is availabl
 {{/if}}
 
 The OpenAPI specification includes:
+
 - Complete endpoint documentation with request/response schemas
 - Authentication and authorization details
 - Error response formats
@@ -34,39 +37,50 @@ npx swagger-parser validate {{OPENAPI_SPEC_PATH}}
 ```
 
 ### API Overview
+
 {{else}}
+
 ## API Overview
 
 This API documentation provides manual documentation for all endpoints. Consider adopting OpenAPI 3.0 for better tooling support.
 
 ### Base URL
+
 {{#each ENVIRONMENTS}}
+
 - **{{name}}:** {{baseUrl}}
 {{/each}}
 
 ### Authentication
+
 {{#if HAS_AUTH}}
 {{AUTH_TYPE}} authentication is required for most endpoints.
 
 {{#if AUTH_TYPE === 'Bearer'}}
 Include the token in the Authorization header:
-```
+
+```text
 Authorization: Bearer <your-token>
 ```
+
 {{/if}}
 
 {{#if AUTH_TYPE === 'API Key'}}
 Include the API key in the header:
-```
+
+```text
 {{API_KEY_HEADER}}: <your-api-key>
 ```
+
 {{/if}}
 {{/if}}
 
 ### API Endpoints
 
 {{#each ENDPOINTS}}
+
 #### {{method}} {{path}}
+
 {{#if description}}
 {{description}}
 {{/if}}
@@ -76,26 +90,35 @@ Include the API key in the header:
 {{/if}}
 
 **Parameters:**
+
 {{#each parameters}}
+
 - `{{name}}` ({{type}}) {{#if required}}**Required**{{/if}} - {{description}}
 {{/each}}
 
 **Request Body:**
+
 {{#if requestBody}}
+
 ```json
 {{requestBody}}
 ```
+
 {{/if}}
 
 **Response:**
+
 {{#each responses}}
 **{{status}}** - {{description}}
+
 ```json
 {{example}}
 ```
+
 {{/each}}
 
 **Example Request:**
+
 ```bash
 curl -X {{method}} "{{../BASE_URL}}{{path}}" \
 {{#if ../HAS_AUTH}}  -H "Authorization: Bearer <token>" \{{/if}}
@@ -104,12 +127,15 @@ curl -X {{method}} "{{../BASE_URL}}{{path}}" \
 ```
 
 ---
+
 {{/each}}
 
 ### Data Models
 
 {{#each MODELS}}
+
 #### {{name}}
+
 {{#if description}}
 {{description}}
 {{/if}}
@@ -119,17 +145,21 @@ curl -X {{method}} "{{../BASE_URL}}{{path}}" \
 ```
 
 **Properties:**
+
 {{#each properties}}
+
 - `{{name}}` ({{type}}) {{#if required}}**Required**{{/if}} - {{description}}
 {{/each}}
 
 ---
+
 {{/each}}
 {{/if}}
 
 ## Common Response Formats
 
 ### Success Response
+
 ```json
 {
   "success": true,
@@ -142,6 +172,7 @@ curl -X {{method}} "{{../BASE_URL}}{{path}}" \
 ```
 
 ### Error Response
+
 ```json
 {
   "success": false,
@@ -155,55 +186,76 @@ curl -X {{method}} "{{../BASE_URL}}{{path}}" \
 ```
 
 ### Common Error Codes
+
 {{#each ERROR_CODES}}
+
 - `{{code}}` ({{status}}) - {{description}}
 {{/each}}
 
 ## Rate Limiting
+
 {{#if HAS_RATE_LIMITING}}
+
 - **Rate limit:** {{RATE_LIMIT}}
 - **Rate limit headers:**
   - `X-RateLimit-Limit`: Total requests allowed
   - `X-RateLimit-Remaining`: Remaining requests
   - `X-RateLimit-Reset`: Reset time (Unix timestamp)
+
 {{/if}}
 
 ## Pagination
+
 {{#if HAS_PAGINATION}}
 Large result sets are paginated using {{PAGINATION_TYPE}}.
 
 **Query Parameters:**
+
 {{#each PAGINATION_PARAMS}}
+
 - `{{name}}` - {{description}}
 {{/each}}
 
 **Response Headers:**
+
 {{#each PAGINATION_HEADERS}}
+
 - `{{name}}` - {{description}}
 {{/each}}
+
 {{/if}}
 
 ## Webhooks
+
 {{#if HAS_WEBHOOKS}}
+
 {{#each WEBHOOKS}}
+
 ### {{name}}
+
 **Event:** {{event}}
 **URL:** Your configured webhook URL
 **Method:** POST
 
 **Payload:**
+
 ```json
 {{payload}}
 ```
+
 {{/each}}
+
 {{/if}}
 
 ## SDK & Libraries
+
 {{#each SDKS}}
+
 - **{{language}}:** {{#if url}}[{{name}}]({{url}}){{else}}{{name}}{{/if}}
 {{/each}}
 
 {{#if HAS_OPENAPI_SPEC}}
+
 ## Updating the OpenAPI Spec
 
 When making API changes:
@@ -215,14 +267,17 @@ When making API changes:
 5. **Test the changes** with the updated spec
 
 ### OpenAPI Tools
+
 - **Swagger Editor**: Edit and validate specs
 - **Swagger UI**: Generate interactive documentation
-- **ReDoc**: Alternative documentation generator  
+- **ReDoc**: Alternative documentation generator
 - **OpenAPI Generator**: Generate client SDKs and server stubs
 - **Prism**: Mock server from OpenAPI specs
+
 {{/if}}
 
 ---
+
 *Last updated: {{TIMESTAMP}}*
 {{#if HAS_OPENAPI_SPEC}}
 *API specification: {{OPENAPI_SPEC_PATH}}*

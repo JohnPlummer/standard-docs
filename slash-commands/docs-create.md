@@ -12,6 +12,7 @@ You are tasked with setting up a comprehensive documentation system for this pro
 ## Step-by-Step Process
 
 ### 1. Project Analysis
+
 - Scan the project structure to understand the codebase
 - Identify the primary programming language and frameworks
 - Determine the project type based on files and dependencies
@@ -19,6 +20,7 @@ You are tasked with setting up a comprehensive documentation system for this pro
 - **For Backend APIs**: Check for OpenAPI specs (`openapi.yaml`, `openapi.json`, `swagger.json`)
 
 ### 2. Documentation Setup
+
 - Create a `docs/` directory if it doesn't exist
 - Generate appropriate documentation files based on project type:
   - **All Projects**: project-overview.md, development-setup.md, key-components.md, deployment-guide.md, troubleshooting.md, recent-changes.md
@@ -30,7 +32,9 @@ You are tasked with setting up a comprehensive documentation system for this pro
   - **Monorepo**: workspace-structure.md, cross-package-dependencies.md
 
 ### 3. Content Generation
+
 For each document:
+
 - **Fill in project-specific information** based on your analysis
 - **Extract relevant details** from the codebase (API endpoints, components, etc.)
 - **For Backend APIs with OpenAPI**: Reference existing spec and generate complementary documentation
@@ -39,7 +43,9 @@ For each document:
 - **Include examples** and practical information
 
 ### 4. CLAUDE.md Configuration
+
 Create a CLAUDE.md file that:
+
 - References all generated documentation
 - Includes project context and key information
 - Provides development commands and workflows
@@ -47,45 +53,52 @@ Create a CLAUDE.md file that:
 
 ## Key Information to Extract
 
-### For All Projects:
+### For All Projects
+
 - Project name and description
 - Main dependencies and frameworks
 - Development setup requirements
 - Build and deployment processes
 - Key directories and file structure
 
-### For Backend APIs:
+### For Backend APIs
+
 - API endpoints and routes (check OpenAPI spec if available)
 - Database schema and models
 - Authentication methods
 - External integrations
 - OpenAPI specification analysis (if `openapi.yaml`, `openapi.json`, or `swagger.json` exists)
 
-### For Frontend Apps:
+### For Frontend Apps
+
 - Component structure and patterns
 - Routing configuration
 - State management approach
 - Build and deployment process
 
-### For Services:
+### For Services
+
 - Service architecture and patterns
 - Message processing capabilities
 - Configuration and environment variables
 - Health checks and monitoring
 
-### For Mobile Apps:
+### For Mobile Apps
+
 - Platform-specific configurations
 - Navigation structure
 - Push notification setup
 - Platform deployment processes
 
-### For Libraries:
+### For Libraries
+
 - Installation methods
 - API surface and usage examples
 - TypeScript definitions
 - Browser/Node.js compatibility
 
-### For Monorepos:
+### For Monorepos
+
 - Workspace structure and organization
 - Package dependencies and relationships
 - Build and deployment strategies
@@ -102,6 +115,7 @@ Create a CLAUDE.md file that:
 ## Output Format
 
 After completing the documentation setup, provide:
+
 1. A summary of what was generated
 2. Key insights about the project structure
 3. Recommendations for maintaining the documentation

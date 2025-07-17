@@ -12,13 +12,16 @@ You are tasked with updating project documentation based on recent git history a
 ## Step-by-Step Process
 
 ### 1. Git History Analysis
+
 - Check git log since last documentation update (look for timestamp in docs)
 - Identify significant commits, PRs, and changes
 - Categorize changes by type (features, bug fixes, refactoring, etc.)
 - Note any breaking changes or major architectural updates
 
 ### 2. Documentation Impact Assessment
+
 For each significant change, determine which documentation needs updates:
+
 - **New features** → Update project-overview.md, key-components.md, relevant guides
 - **API changes** → Update api-reference.md (or OpenAPI spec if present), examples
 - **Configuration changes** → Update development-setup.md, deployment-guide.md
@@ -27,6 +30,7 @@ For each significant change, determine which documentation needs updates:
 - **Performance improvements** → Update relevant architecture documents
 
 ### 3. Update Documentation Files
+
 - **project-overview.md**: Update features, architecture, tech stack
 - **development-setup.md**: Update dependencies, setup steps, commands
 - **key-components.md**: Update component descriptions, new components
@@ -36,7 +40,9 @@ For each significant change, determine which documentation needs updates:
 - **Project-specific docs**: Update based on relevant changes
 
 ### 4. Update recent-changes.md
+
 Create comprehensive changelog with:
+
 - **Recent Updates**: Last 30 days of significant changes
 - **New Features**: Added functionality with descriptions
 - **Bug Fixes**: Resolved issues and their solutions
@@ -46,13 +52,15 @@ Create comprehensive changelog with:
 
 ## Information to Extract from Git
 
-### Commit Analysis:
+### Commit Analysis
+
 - Commit messages and descriptions
 - File changes and modifications
 - Author and timestamp information
 - Associated pull request data
 
-### Change Categories:
+### Change Categories
+
 - **Features**: New functionality added
 - **Fixes**: Bug fixes and corrections
 - **Refactoring**: Code restructuring without functionality changes
@@ -61,7 +69,8 @@ Create comprehensive changelog with:
 - **Dependencies**: Package updates and additions
 - **Configuration**: Settings and config changes
 
-### Impact Assessment:
+### Impact Assessment
+
 - **Breaking Changes**: Changes that affect existing APIs or workflows
 - **New Dependencies**: Added packages or services
 - **Removed Features**: Deprecated or removed functionality
@@ -89,12 +98,14 @@ git shortlog --since="<last-update-date>" --summary --numbered
 
 ## Documentation Update Strategy
 
-### Priority Levels:
+### Priority Levels
+
 1. **Critical**: Breaking changes, new APIs, major features
 2. **Important**: Bug fixes, new components, configuration changes
 3. **Nice to have**: Minor improvements, dependency updates, refactoring
 
-### Update Approach:
+### Update Approach
+
 1. **Incremental Updates**: Update existing sections with new information
 2. **New Sections**: Add new sections for significant new features
 3. **Cleanup**: Remove outdated information
@@ -102,14 +113,16 @@ git shortlog --since="<last-update-date>" --summary --numbered
 
 ## Quality Assurance
 
-### Verification Steps:
+### Verification Steps
+
 1. **Accuracy**: Verify all updated information against current codebase
 2. **Completeness**: Ensure all significant changes are documented
 3. **Consistency**: Maintain consistent formatting and style
 4. **Clarity**: Ensure updates are clear and well-explained
 5. **Examples**: Update code examples to reflect current APIs
 
-### Common Pitfalls to Avoid:
+### Common Pitfalls to Avoid
+
 - Don't include every minor commit
 - Don't add information that can't be verified
 - Don't duplicate information across documents
@@ -119,6 +132,7 @@ git shortlog --since="<last-update-date>" --summary --numbered
 ## Output Format
 
 After completing the documentation update, provide:
+
 1. **Summary of changes** made to documentation
 2. **Key updates** by category (features, fixes, etc.)
 3. **Impact assessment** of changes on project usage
@@ -127,7 +141,8 @@ After completing the documentation update, provide:
 
 ## Special Considerations
 
-### For Different Project Types:
+### For Different Project Types
+
 - **APIs**: Focus on endpoint changes, schema updates (update OpenAPI spec if present)
 - **Frontend**: Focus on component changes, new pages/features
 - **Services**: Focus on configuration, integrations, performance

@@ -12,13 +12,16 @@ You are tasked with analyzing the current project documentation to assess its qu
 ## Step-by-Step Process
 
 ### 1. Documentation Inventory
+
 - List all existing documentation files
 - Categorize documents by purpose (setup, reference, guides, etc.)
 - Note last update dates and freshness
 - Identify missing standard documentation
 
 ### 2. Content Analysis
+
 For each document:
+
 - **Accuracy**: Verify information against current codebase
 - **Completeness**: Check if all relevant information is covered
 - **Clarity**: Assess if content is clear and well-structured
@@ -26,14 +29,18 @@ For each document:
 - **Currency**: Check if information is up-to-date
 
 ### 3. Gap Analysis
+
 Identify missing documentation:
+
 - **Essential docs**: PROJECT_OVERVIEW, DEVELOPMENT_SETUP, etc.
 - **Project-specific docs**: API_REFERENCE, COMPONENT_LIBRARY, etc.
 - **Process docs**: Deployment, troubleshooting, contributing
 - **Technical docs**: Architecture, database schema, etc.
 
 ### 4. Quality Assessment
+
 Rate documentation on:
+
 - **Completeness** (1-10): How much of the project is documented
 - **Accuracy** (1-10): How well docs match current codebase
 - **Usability** (1-10): How helpful docs are for developers
@@ -41,9 +48,10 @@ Rate documentation on:
 
 ## Analysis Framework
 
-### Document Categories to Review:
+### Document Categories to Review
 
-#### Essential Documentation:
+#### Essential Documentation
+
 - **project-overview.md**: Project description, goals, architecture
 - **development-setup.md**: Setup instructions, dependencies
 - **key-components.md**: Main modules and their purposes
@@ -51,7 +59,8 @@ Rate documentation on:
 - **troubleshooting.md**: Common issues and solutions
 - **recent-changes.md**: Recent updates and changelog
 
-#### Project-Specific Documentation:
+#### Project-Specific Documentation
+
 - **Backend API**: api-reference.md, database-schema.md (also check for OpenAPI specs)
 - **Frontend**: component-library.md, routing-guide.md
 - **Service**: service-architecture.md
@@ -59,30 +68,34 @@ Rate documentation on:
 - **Library**: package-usage.md
 - **Monorepo**: workspace-structure.md, cross-package-dependencies.md
 
-#### Process Documentation:
+#### Process Documentation
+
 - **README.md**: Project introduction and quick start
 - **CONTRIBUTING.md**: Contribution guidelines
 - **CODE_OF_CONDUCT.md**: Community standards
 - **CHANGELOG.md**: Version history and changes
 - **SECURITY.md**: Security policies and reporting
 
-### Quality Metrics:
+### Quality Metrics
 
-#### Content Quality:
+#### Content Quality
+
 - **Accuracy**: Information matches current codebase
 - **Completeness**: All relevant topics are covered
 - **Clarity**: Content is clear and well-organized
 - **Examples**: Practical examples and code snippets
 - **Consistency**: Consistent style and formatting
 
-#### Technical Quality:
+#### Technical Quality
+
 - **Code Examples**: Working, tested examples
 - **Links**: Internal and external links work
 - **Formatting**: Proper markdown formatting
 - **Structure**: Logical organization and flow
 - **Searchability**: Easy to find information
 
-#### Maintenance Quality:
+#### Maintenance Quality
+
 - **Freshness**: Recently updated content
 - **Ownership**: Clear maintainers/owners
 - **Process**: Documentation update process
@@ -91,33 +104,38 @@ Rate documentation on:
 
 ## Specific Checks to Perform
 
-### For All Documentation:
+### For All Documentation
+
 - Last updated timestamps
 - Broken internal/external links
 - Outdated information (versions, URLs, etc.)
 - Missing sections or incomplete content
 - Inconsistent formatting or style
 
-### For Setup Documentation:
+### For Setup Documentation
+
 - Installation instructions work on clean environment
 - Dependencies are current and available
 - Environment setup steps are complete
 - Common setup issues are addressed
 
-### For API Documentation:
+### For API Documentation
+
 - All endpoints are documented (in api-reference.md or OpenAPI spec)
 - Request/response examples are current
 - Authentication methods are explained
 - Error codes and responses are covered
 - OpenAPI spec is valid and up-to-date (if present)
 
-### For Component Documentation:
+### For Component Documentation
+
 - All major components are documented
 - Usage examples are provided
 - Props/parameters are explained
 - Component relationships are clear
 
-### For Deployment Documentation:
+### For Deployment Documentation
+
 - All deployment targets are covered
 - Environment variables are documented
 - Deployment steps are complete and current
@@ -125,21 +143,25 @@ Rate documentation on:
 
 ## Analysis Output
 
-### Documentation Report:
+### Documentation Report
+
 1. **Executive Summary**: Overall state of documentation
 2. **Quality Scores**: Ratings for each category
 3. **Gap Analysis**: Missing or incomplete documentation
 4. **Issues Found**: Specific problems identified
 5. **Recommendations**: Prioritized improvement suggestions
 
-### Detailed Findings:
+### Detailed Findings
+
 For each document reviewed:
+
 - **Status**: Complete, Partial, Missing, Outdated
 - **Issues**: Specific problems found
 - **Recommendations**: Suggested improvements
 - **Priority**: High, Medium, Low
 
-### Action Plan:
+### Action Plan
+
 1. **Immediate Actions**: Critical fixes needed
 2. **Short-term Goals**: Improvements for next sprint
 3. **Long-term Strategy**: Sustainable documentation process
@@ -147,21 +169,24 @@ For each document reviewed:
 
 ## Common Documentation Issues
 
-### Content Issues:
+### Content Issues
+
 - Outdated information
 - Missing examples
 - Incomplete procedures
 - Unclear explanations
 - Inconsistent terminology
 
-### Technical Issues:
+### Technical Issues
+
 - Broken links
 - Incorrect code examples
 - Missing dependencies
 - Wrong file paths
 - Outdated screenshots
 
-### Process Issues:
+### Process Issues
+
 - No update process
 - Unclear ownership
 - No review process
@@ -170,21 +195,24 @@ For each document reviewed:
 
 ## Best Practices Assessment
 
-### Structure:
+### Structure
+
 - Clear navigation and organization
 - Logical information hierarchy
 - Consistent formatting
 - Table of contents where needed
 - Cross-references between documents
 
-### Content:
+### Content
+
 - Clear, concise writing
 - Practical examples
 - Step-by-step instructions
 - Troubleshooting sections
 - Regular updates
 
-### Maintenance:
+### Maintenance
+
 - Clear ownership
 - Regular review cycles
 - Automated testing
@@ -193,12 +221,14 @@ For each document reviewed:
 
 ## Recommendations Framework
 
-### Priority Levels:
+### Priority Levels
+
 1. **Critical**: Blocking developer productivity
 2. **Important**: Significant impact on efficiency
 3. **Nice to have**: Quality of life improvements
 
-### Improvement Types:
+### Improvement Types
+
 - **Create**: New documentation needed
 - **Update**: Existing docs need refresh
 - **Fix**: Specific issues to resolve

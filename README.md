@@ -33,6 +33,7 @@ curl -sSL https://raw.githubusercontent.com/johnplummer/standard-docs/main/insta
 ```
 
 This installs:
+
 - Claude slash commands in `.claude/slash-commands/`
 - Documentation templates in `.standard-docs-templates/`
 - A `.gitignore` file (if not present)
@@ -42,21 +43,27 @@ This installs:
 Once installed, you can use these commands in Claude:
 
 #### `/docs-create`
+
 Set up documentation for a new project. Claude will:
+
 - Analyze your project structure and detect the project type
 - Create a `docs/` directory with appropriate documentation files
 - Generate meaningful content based on your actual codebase
 - Create a `CLAUDE.md` file for future reference
 
-#### `/docs-update` 
+#### `/docs-update`
+
 Update documentation based on git history. Claude will:
+
 - Analyze recent git commits since last update
 - Update relevant documentation files
 - Refresh the `RECENT_CHANGES.md` file
 - Ensure documentation stays current with code changes
 
 #### `/docs-analyze`
+
 Analyze existing documentation quality. Claude will:
+
 - Review all documentation files for completeness and accuracy
 - Identify gaps and inconsistencies
 - Assess documentation against best practices
@@ -65,6 +72,7 @@ Analyze existing documentation quality. Claude will:
 ## Generated Documentation
 
 ### Core Files (All Projects)
+
 - `PROJECT_OVERVIEW.md` - Project description, goals, and architecture
 - `DEVELOPMENT_SETUP.md` - Environment setup and dependencies
 - `KEY_COMPONENTS.md` - Main modules and their purposes
@@ -73,6 +81,7 @@ Analyze existing documentation quality. Claude will:
 - `RECENT_CHANGES.md` - Changelog and recent updates
 
 ### Project-Specific Files
+
 - **Backend APIs**: `API_REFERENCE.md`, `DATABASE_SCHEMA.md`
 - **Frontend Apps**: `COMPONENT_LIBRARY.md`, `ROUTING_GUIDE.md`
 - **Services**: `SERVICE_ARCHITECTURE.md`
@@ -90,6 +99,7 @@ Analyze existing documentation quality. Claude will:
 ## Template System
 
 The templates use simple variable substitution:
+
 - `{{PROJECT_NAME}}` - Your project name
 - `{{PROJECT_DESCRIPTION}}` - Project description
 - `{{FRAMEWORKS}}` - Detected frameworks and technologies
@@ -116,30 +126,37 @@ If you prefer not to use the install script:
 ## Examples
 
 ### Creating Documentation for a React App
-```
+
+```text
 /docs-create
 ```
+
 Claude will detect it's a React app and create:
+
 - Core documentation files
 - `COMPONENT_LIBRARY.md` with component documentation
 - `ROUTING_GUIDE.md` with routing information
 
 ### Updating Documentation After Changes
-```
+
+```text
 /docs-update
 ```
+
 Claude will analyze recent commits and update relevant docs.
 
 ### Analyzing Documentation Quality
-```
+
+```text
 /docs-analyze
 ```
+
 Claude will review all docs and provide improvement recommendations.
 
 ## Support
 
-- **GitHub**: https://github.com/johnplummer/standard-docs
-- **Issues**: https://github.com/johnplummer/standard-docs/issues
+- **GitHub**: <https://github.com/johnplummer/standard-docs>
+- **Issues**: <https://github.com/johnplummer/standard-docs/issues>
 
 ## License
 
@@ -147,4 +164,4 @@ MIT - See LICENSE file for details.
 
 ---
 
-**Happy documenting with Claude! 🎉**
+Happy documenting with Claude! 🎉
