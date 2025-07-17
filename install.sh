@@ -74,6 +74,20 @@ setup_claude_commands() {
     
     mkdir -p "$SLASH_COMMANDS_DIR"
     
+    # Check if slash commands already exist
+    if [ -d "$SLASH_COMMANDS_DIR" ] && [ "$(ls -A "$SLASH_COMMANDS_DIR" 2>/dev/null)" ]; then
+        print_warning "Existing slash commands found in $SLASH_COMMANDS_DIR"
+        echo -e "${YELLOW}The following files will be overwritten:${NC}"
+        ls -1 "$SLASH_COMMANDS_DIR"
+        echo
+        read -p "Continue and overwrite existing slash commands? (y/n): " -n 1 -r
+        echo
+        if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+            print_status "Skipped slash commands installation"
+            return
+        fi
+    fi
+    
     # Copy slash commands
     cp "$TEMP_DIR/slash-commands"/* "$SLASH_COMMANDS_DIR/"
     
@@ -88,47 +102,26 @@ setup_templates() {
     TEMPLATES_DIR="$TARGET_DIR/.standard-docs-templates"
     mkdir -p "$TEMPLATES_DIR"
     
+    # Check if templates already exist
+    if [ -d "$TEMPLATES_DIR" ] && [ "$(ls -A "$TEMPLATES_DIR" 2>/dev/null)" ]; then
+        print_warning "Existing templates found in $TEMPLATES_DIR"
+        echo -e "${YELLOW}The following directories/files will be overwritten:${NC}"
+        ls -1 "$TEMPLATES_DIR"
+        echo
+        read -p "Continue and overwrite existing templates? (y/n): " -n 1 -r
+        echo
+        if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+            print_status "Skipped templates installation"
+            return
+        fi
+    fi
+    
     # Copy templates
     cp -r "$TEMP_DIR/templates"/* "$TEMPLATES_DIR/"
     
     print_status "Templates installed"
 }
 
-# Create gitignore if it doesn't exist
-create_gitignore() {
-    if [ ! -f "$TARGET_DIR/.gitignore" ]; then
-        echo -e "${BLUE}📄 Creating .gitignore...${NC}"
-        
-        cat > "$TARGET_DIR/.gitignore" << 'EOF'
-# Dependencies
-node_modules/
-
-# OS files
-.DS_Store
-Thumbs.db
-
-# Logs
-*.log
-
-# Editor directories and files
-.idea/
-.vscode/
-*.swp
-*.swo
-
-# Environment variables
-.env
-.env.local
-
-# Documentation generation output
-.standard-docs-temp/
-EOF
-        
-        print_status ".gitignore created"
-    else
-        print_status ".gitignore already exists"
-    fi
-}
 
 # Cleanup
 cleanup() {
@@ -149,7 +142,6 @@ print_usage() {
     echo -e "${GREEN}What was installed:${NC}"
     echo "  .claude/slash-commands/ - Claude slash commands"
     echo "  .standard-docs-templates/ - Documentation templates"
-    echo "  .gitignore - Git ignore file (if not present)"
     echo
     echo -e "${GREEN}Next Steps:${NC}"
     echo "1. In Claude, run: /docs-create"
@@ -171,7 +163,6 @@ main() {
     download_standard_docs
     setup_claude_commands
     setup_templates
-    create_gitignore
     cleanup
     
     echo -e "\n${GREEN}✅ Standard Docs installation complete!${NC}"
