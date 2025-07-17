@@ -15,7 +15,8 @@ class ProjectTypeDetector {
     try {
       const packagePath = path.join(this.projectPath, 'package.json');
       return JSON.parse(fs.readFileSync(packagePath, 'utf8'));
-    } catch {
+    } catch (error) {
+      console.log(`Note: Could not read package.json at ${this.projectPath} - this is normal for non-Node.js projects`);
       return null;
     }
   }
@@ -225,7 +226,7 @@ class ProjectTypeDetector {
           ...subType
         });
       } catch (e) {
-        // Skip invalid package.json files
+        console.log(`Note: Skipping invalid package.json at ${pkgFile}: ${e.message}`);
       }
     }
 

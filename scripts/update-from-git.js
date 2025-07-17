@@ -12,8 +12,25 @@ class GitHistoryAnalyzer {
     this.docsPath = path.join(projectPath, 'docs');
   }
 
+  async validateGitRepository() {
+    try {
+      await this.git.checkIsRepo();
+      return true;
+    } catch (error) {
+      console.error(chalk.red(`Error: This directory is not a git repository: ${this.projectPath}`));
+      console.log(chalk.yellow('To initialize a git repository, run: git init'));
+      return false;
+    }
+  }
+
   async analyzeAndUpdate() {
     console.log(chalk.blue.bold('🔍 Analyzing git history for documentation updates...\n'));
+    
+    // Validate git repository first
+    const isGitRepo = await this.validateGitRepository();
+    if (!isGitRepo) {
+      process.exit(1);
+    }
     
     try {
       const lastUpdate = await this.getLastDocumentationUpdate();
@@ -244,9 +261,10 @@ class GitHistoryAnalyzer {
       return;
     }
     
-    // This is a placeholder - in a real implementation, you'd parse the markdown
-    // and update specific sections based on the analysis
-    console.log(chalk.green('- Updated PROJECT_OVERVIEW.md with new features'));
+    // TODO: Implement actual markdown parsing and updating
+    // This placeholder simulates updating PROJECT_OVERVIEW.md with detected changes
+    // A real implementation would parse the markdown and update specific sections
+    console.log(chalk.green('- PROJECT_OVERVIEW.md update simulated (not implemented)'));
   }
 
   async updateDevelopmentSetup(analysis) {
@@ -257,7 +275,7 @@ class GitHistoryAnalyzer {
       return;
     }
     
-    console.log(chalk.green('- Updated DEVELOPMENT_SETUP.md with dependency changes'));
+    console.log(chalk.green('- DEVELOPMENT_SETUP.md update simulated (not implemented)'));
   }
 
   async updateTroubleshooting(analysis) {
@@ -268,7 +286,7 @@ class GitHistoryAnalyzer {
       return;
     }
     
-    console.log(chalk.green('- Updated TROUBLESHOOTING.md with bug fix insights'));
+    console.log(chalk.green('- TROUBLESHOOTING.md update simulated (not implemented)'));
   }
 
   async updateKeyComponents(analysis) {

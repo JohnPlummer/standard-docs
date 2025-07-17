@@ -10,10 +10,27 @@ const ProjectTypeDetector = require('./detect-project-type');
 class InteractiveSetup {
   constructor(targetPath = process.cwd()) {
     this.targetPath = targetPath;
+    this.validateTargetPath();
     this.detector = new ProjectTypeDetector(targetPath);
     this.report = this.detector.generateReport();
     this.answers = {};
     this.templatePath = path.join(__dirname, '..', 'templates');
+  }
+
+  validateTargetPath() {
+    try {
+      const resolvedPath = path.resolve(this.targetPath);
+      if (!fs.existsSync(resolvedPath)) {
+        throw new Error(`Target directory does not exist: ${resolvedPath}`);
+      }
+      if (!fs.statSync(resolvedPath).isDirectory()) {
+        throw new Error(`Target path is not a directory: ${resolvedPath}`);
+      }
+      this.targetPath = resolvedPath;
+    } catch (error) {
+      console.error(chalk.red(`Error: ${error.message}`));
+      process.exit(1);
+    }
   }
 
   async run() {
@@ -389,21 +406,40 @@ class InteractiveSetup {
   }
 
   processTemplate(content) {
-    // Simple template processing - replace {{VARIABLE}} with values
+    // Template processing with proper escaping and error handling
     const context = {
-      PROJECT_NAME: this.answers.projectName,
-      PROJECT_DESCRIPTION: this.answers.projectDescription,
-      PROJECT_TYPE: this.report.detection.type,
-      REPOSITORY_URL: this.answers.repositoryUrl,
-      FRAMEWORKS: this.report.frameworks,
+      PROJECT_NAME: this.escapeTemplateValue(this.answers.projectName || 'Unnamed Project'),
+      PROJECT_DESCRIPTION: this.escapeTemplateValue(this.answers.projectDescription || 'No description provided'),
+      PROJECT_TYPE: this.escapeTemplateValue(this.report.detection.type || 'unknown'),
+      REPOSITORY_URL: this.escapeTemplateValue(this.answers.repositoryUrl || ''),
+      FRAMEWORKS: Array.isArray(this.report.frameworks) ? this.report.frameworks.join(', ') : 'None detected',
       TIMESTAMP: new Date().toISOString(),
-      TEAM_CHAT_CHANNEL: this.answers.teamChatChannel,
-      ISSUE_TRACKER_URL: this.answers.issueTrackerUrl,
+      TEAM_CHAT_CHANNEL: this.escapeTemplateValue(this.answers.teamChatChannel || ''),
+      ISSUE_TRACKER_URL: this.escapeTemplateValue(this.answers.issueTrackerUrl || ''),
       ...this.answers
     };
 
-    return content.replace(/\{\{(\w+)\}\}/g, (match, key) => {
-      return context[key] || match;
+    try {
+      return content.replace(/\{\{(\w+)\}\}/g, (match, key) => {
+        if (context.hasOwnProperty(key)) {
+          return context[key];
+        }
+        console.log(`Warning: Template variable {{${key}}} not found, leaving as-is`);
+        return match;
+      });
+    } catch (error) {
+      console.error(chalk.red(`Error processing template: ${error.message}`));
+      return content;
+    }
+  }
+
+  escapeTemplateValue(value) {
+    if (typeof value !== 'string') {
+      return String(value);
+    }
+    // Escape special characters that could break markdown
+    return value.replace(/[<>]/g, (char) => {
+      return char === '<' ? '&lt;' : '&gt;';
     });
   }
 
