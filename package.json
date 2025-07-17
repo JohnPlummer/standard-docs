@@ -22,7 +22,7 @@
   },
   "files": [
     "templates/",
-    "slash-commands/",
+    "commands/",
     "install.sh",
     "README.md"
   ]

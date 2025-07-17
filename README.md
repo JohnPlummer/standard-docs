@@ -34,7 +34,7 @@ curl -sSL https://raw.githubusercontent.com/johnplummer/standard-docs/main/insta
 
 This installs:
 
-- Claude slash commands in `.claude/slash-commands/`
+- Claude slash commands in `.claude/commands/`
 - Documentation templates in `.standard-docs-templates/`
 
 ### Using the Slash Commands
@@ -117,8 +117,8 @@ No Node.js or other dependencies are required!
 
 If you prefer not to use the install script:
 
-1. Create `.claude/slash-commands/` directory in your project
-2. Copy the three `.md` files from the `slash-commands/` directory
+1. Create `.claude/commands/` directory in your project
+2. Copy the three `.md` files from the `commands/` directory
 3. Copy the `templates/` directory to `.standard-docs-templates/`
 4. Run `/docs-create` in Claude
 

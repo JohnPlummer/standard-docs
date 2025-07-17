@@ -27,7 +27,7 @@ curl -sSL https://raw.githubusercontent.com/johnplummer/standard-docs/main/insta
 
 # Verify templates are installed
 ls -la .standard-docs-templates/
-ls -la .claude/slash-commands/
+ls -la .claude/commands/
 ```
 
 ## Architecture
@@ -43,9 +43,9 @@ ls -la .claude/slash-commands/
 2. **Installation System**:
    - `install.sh`: Bash script for one-line installation
    - Creates `.standard-docs-templates/` directory in target projects
-   - Sets up Claude slash commands in `.claude/slash-commands/`
+   - Sets up Claude slash commands in `.claude/commands/`
 
-3. **Slash Commands** (`slash-commands/`):
+3. **Slash Commands** (`commands/`):
    - `/docs-create`: Creates new documentation from templates
    - `/docs-update`: Updates documentation from git commits
    - `/docs-analyze`: Analyzes documentation quality and coverage
@@ -93,7 +93,7 @@ When modifying templates:
 ## Integration Points
 
 - Templates installed in target project's `.standard-docs-templates/` directory
-- Slash commands installed in `.claude/slash-commands/` directory
+- Slash commands installed in `.claude/commands/` directory
 - Integrates with Claude Code for documentation tasks
 - Analyzes git history for documentation updates
 - Supports OpenAPI specifications for enhanced API documentation

@@ -70,7 +70,7 @@ setup_claude_commands() {
     
     # Create Claude slash commands directory
     CLAUDE_DIR="$TARGET_DIR/.claude"
-    SLASH_COMMANDS_DIR="$CLAUDE_DIR/slash-commands"
+    SLASH_COMMANDS_DIR="$CLAUDE_DIR/commands"
     
     mkdir -p "$SLASH_COMMANDS_DIR"
     
@@ -89,7 +89,7 @@ setup_claude_commands() {
     fi
     
     # Copy slash commands
-    cp "$TEMP_DIR/slash-commands"/* "$SLASH_COMMANDS_DIR/"
+    cp "$TEMP_DIR/commands"/* "$SLASH_COMMANDS_DIR/"
     
     print_status "Claude slash commands installed"
 }
@@ -140,7 +140,7 @@ print_usage() {
     echo "  /docs-analyze - Analyze existing documentation quality"
     echo
     echo -e "${GREEN}What was installed:${NC}"
-    echo "  .claude/slash-commands/ - Claude slash commands"
+    echo "  .claude/commands/ - Claude slash commands"
     echo "  .standard-docs-templates/ - Documentation templates"
     echo
     echo -e "${GREEN}Next Steps:${NC}"
