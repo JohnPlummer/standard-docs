@@ -20,7 +20,7 @@ You are tasked with updating project documentation based on recent git history a
 ### 2. Documentation Impact Assessment
 For each significant change, determine which documentation needs updates:
 - **New features** → Update project-overview.md, key-components.md, relevant guides
-- **API changes** → Update api-reference.md, examples
+- **API changes** → Update api-reference.md (or OpenAPI spec if present), examples
 - **Configuration changes** → Update development-setup.md, deployment-guide.md
 - **New dependencies** → Update development-setup.md, project-overview.md
 - **Bug fixes** → Update troubleshooting.md if relevant
@@ -30,7 +30,7 @@ For each significant change, determine which documentation needs updates:
 - **project-overview.md**: Update features, architecture, tech stack
 - **development-setup.md**: Update dependencies, setup steps, commands
 - **key-components.md**: Update component descriptions, new components
-- **api-reference.md**: Update endpoints, parameters, examples
+- **api-reference.md**: Update endpoints, parameters, examples (or reference OpenAPI spec if present)
 - **deployment-guide.md**: Update deployment processes, environments
 - **troubleshooting.md**: Add new known issues and solutions
 - **Project-specific docs**: Update based on relevant changes
@@ -128,7 +128,7 @@ After completing the documentation update, provide:
 ## Special Considerations
 
 ### For Different Project Types:
-- **APIs**: Focus on endpoint changes, schema updates
+- **APIs**: Focus on endpoint changes, schema updates (update OpenAPI spec if present)
 - **Frontend**: Focus on component changes, new pages/features
 - **Services**: Focus on configuration, integrations, performance
 - **Mobile**: Focus on platform-specific changes, new features

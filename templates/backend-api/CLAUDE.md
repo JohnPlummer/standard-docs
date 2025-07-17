@@ -20,20 +20,24 @@ This project uses a structured documentation system. When helping with this proj
 ### API-Specific Documentation
 - **[docs/api-reference.md](docs/api-reference.md)** - **Complete API documentation** with endpoints, parameters, and examples
 - **[docs/database-schema.md](docs/database-schema.md)** - **Database structure** and relationships
+- **OpenAPI Specification** - Look for `openapi.yaml`, `openapi.json`, or `swagger.json` in the project root or `docs/` directory
 
 ## AI Assistant Guidelines for API Development
 
 ### Before Making API Changes
-1. **Read api-reference.md** to understand existing endpoints and patterns
-2. **Check database-schema.md** for data relationships and constraints
-3. **Review troubleshooting.md** for common API issues and solutions
-4. **Understand security patterns** from existing endpoint implementations
+1. **Check for OpenAPI spec** - Look for `openapi.yaml`, `openapi.json`, or `swagger.json` files
+2. **Read api-reference.md** to understand existing endpoints and patterns
+3. **Check database-schema.md** for data relationships and constraints
+4. **Review troubleshooting.md** for common API issues and solutions
+5. **Understand security patterns** from existing endpoint implementations
 
 ### When Adding New Endpoints
 1. **Follow RESTful principles** and existing URL patterns shown in api-reference.md
 2. **Implement proper authentication** - check existing patterns in codebase
 3. **Add comprehensive validation** for all inputs
-4. **Update api-reference.md** with new endpoint documentation
+4. **Update API documentation**:
+   - **If using OpenAPI**: Update the OpenAPI spec file first, then validate it
+   - **If using manual docs**: Update api-reference.md with new endpoint documentation
 5. **Add appropriate error handling** and return consistent error formats
 6. **Consider rate limiting** and security implications
 
@@ -42,7 +46,9 @@ This project uses a structured documentation system. When helping with this proj
 2. **Update database-schema.md** with schema changes
 3. **Consider backwards compatibility** for existing API endpoints
 4. **Test data migration** thoroughly
-5. **Update api-reference.md** if changes affect API responses
+5. **Update API documentation**:
+   - **If using OpenAPI**: Update response schemas in the spec
+   - **If using manual docs**: Update api-reference.md with new response formats
 
 ### When Debugging API Issues
 1. **Check troubleshooting.md first** - solution might already be documented
@@ -57,7 +63,9 @@ This project uses a structured documentation system. When helping with this proj
 - **Input Validation**: Validate all inputs before processing
 - **Error Handling**: Return meaningful error messages with appropriate HTTP status codes
 - **Security**: Implement proper authentication, authorization, and input sanitization
-- **Documentation**: Keep api-reference.md updated with all endpoint changes
+- **Documentation**: Keep API documentation updated with all endpoint changes
+  - **OpenAPI projects**: Update spec first, then validate and regenerate docs
+  - **Manual projects**: Update api-reference.md directly
 - **Testing**: Write comprehensive tests for all endpoints
 
 ### Common API Patterns to Follow
@@ -104,14 +112,46 @@ This project uses a structured documentation system. When helping with this proj
 - **{{MIGRATIONS_DIR}}** - Database migrations
 
 ### Important Notes for AI Assistance
+- **Check for OpenAPI spec first** - Look for `openapi.yaml`, `openapi.json`, or `swagger.json`
 - **Always check api-reference.md** for endpoint documentation before making changes
 - **Refer to database-schema.md** for data relationships and constraints
 - **Follow existing authentication patterns** shown in the codebase
-- **Update documentation** when making API changes
+- **Update documentation** when making API changes (OpenAPI spec or manual docs)
 - **Consider security implications** for all API modifications
 - **Test thoroughly** including edge cases and error scenarios
 
+## OpenAPI Workflow Support
+
+### If Project Uses OpenAPI
+**Common file locations**: `openapi.yaml`, `openapi.json`, `swagger.json`, `docs/openapi.yaml`
+
+**When making API changes**:
+1. **Update OpenAPI spec first** - This is the source of truth
+2. **Validate the spec**: Use tools like `swagger-parser` or `redocly lint`
+3. **Regenerate documentation** if using automated tools (Swagger UI, ReDoc)
+4. **Update client SDKs** if using code generation
+5. **Test with updated spec** using tools like Postman or Prism mock server
+
+**Common OpenAPI tools to be aware of**:
+- **Swagger Editor**: For editing and validating specs
+- **Swagger UI**: For interactive documentation
+- **ReDoc**: Alternative documentation generator
+- **OpenAPI Generator**: For client SDK generation
+- **Prism**: For mock servers and contract testing
+
+### If Project Uses Manual Documentation
+**When making API changes**:
+1. **Update api-reference.md** with new endpoint details
+2. **Include request/response examples** for clarity
+3. **Update error response documentation** as needed
+4. **Consider migrating to OpenAPI** for better tooling support
+
+### Migration Considerations
+- **OpenAPI offers better tooling**: Code generation, validation, mock servers
+- **Manual docs offer more flexibility**: Custom formatting, complex explanations
+- **Hybrid approach**: OpenAPI spec + additional manual documentation for complex topics
+
 ---
-*This file serves as a navigation hub for Claude working on API development. For detailed API information, refer to api-reference.md and database-schema.md.*
+*This file serves as a navigation hub for Claude working on API development. For detailed API information, refer to api-reference.md, database-schema.md, and any OpenAPI specifications.*
 
 *Last updated: {{TIMESTAMP}}*

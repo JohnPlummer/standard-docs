@@ -52,7 +52,7 @@ Rate documentation on:
 - **recent-changes.md**: Recent updates and changelog
 
 #### Project-Specific Documentation:
-- **Backend API**: api-reference.md, database-schema.md
+- **Backend API**: api-reference.md, database-schema.md (also check for OpenAPI specs)
 - **Frontend**: component-library.md, routing-guide.md
 - **Service**: service-architecture.md
 - **Mobile**: platform-guides.md
@@ -105,10 +105,11 @@ Rate documentation on:
 - Common setup issues are addressed
 
 ### For API Documentation:
-- All endpoints are documented
+- All endpoints are documented (in api-reference.md or OpenAPI spec)
 - Request/response examples are current
 - Authentication methods are explained
 - Error codes and responses are covered
+- OpenAPI spec is valid and up-to-date (if present)
 
 ### For Component Documentation:
 - All major components are documented

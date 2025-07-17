@@ -16,6 +16,7 @@ You are tasked with setting up a comprehensive documentation system for this pro
 - Identify the primary programming language and frameworks
 - Determine the project type based on files and dependencies
 - Look for existing documentation to understand current state
+- **For Backend APIs**: Check for OpenAPI specs (`openapi.yaml`, `openapi.json`, `swagger.json`)
 
 ### 2. Documentation Setup
 - Create a `docs/` directory if it doesn't exist
@@ -32,6 +33,8 @@ You are tasked with setting up a comprehensive documentation system for this pro
 For each document:
 - **Fill in project-specific information** based on your analysis
 - **Extract relevant details** from the codebase (API endpoints, components, etc.)
+- **For Backend APIs with OpenAPI**: Reference existing spec and generate complementary documentation
+- **For Backend APIs without OpenAPI**: Create comprehensive manual API documentation
 - **Provide meaningful content** rather than just placeholder text
 - **Include examples** and practical information
 
@@ -52,10 +55,11 @@ Create a CLAUDE.md file that:
 - Key directories and file structure
 
 ### For Backend APIs:
-- API endpoints and routes
+- API endpoints and routes (check OpenAPI spec if available)
 - Database schema and models
 - Authentication methods
 - External integrations
+- OpenAPI specification analysis (if `openapi.yaml`, `openapi.json`, or `swagger.json` exists)
 
 ### For Frontend Apps:
 - Component structure and patterns

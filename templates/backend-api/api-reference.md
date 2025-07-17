@@ -1,11 +1,50 @@
 # {{PROJECT_NAME}} - API Reference
 
-## Base URL
+{{#if HAS_OPENAPI_SPEC}}
+## OpenAPI Specification
+
+This API is documented using OpenAPI 3.0. The complete specification is available at:
+- **Spec File**: `{{OPENAPI_SPEC_PATH}}`
+- **Interactive Documentation**: {{#if SWAGGER_UI_URL}}[Swagger UI]({{SWAGGER_UI_URL}}){{/if}}{{#if REDOC_URL}}[ReDoc]({{REDOC_URL}}){{/if}}
+
+### Quick Reference
+
+{{#if SWAGGER_UI_URL}}
+**🔗 [View Interactive API Documentation]({{SWAGGER_UI_URL}})**
+{{/if}}
+
+The OpenAPI specification includes:
+- Complete endpoint documentation with request/response schemas
+- Authentication and authorization details
+- Error response formats
+- Request/response examples
+- Model definitions and validation rules
+
+### Using the OpenAPI Spec
+
+```bash
+# View the raw specification
+cat {{OPENAPI_SPEC_PATH}}
+
+# Generate client SDKs
+npx @openapitools/openapi-generator-cli generate -i {{OPENAPI_SPEC_PATH}} -g typescript-fetch -o ./client
+
+# Validate the specification
+npx swagger-parser validate {{OPENAPI_SPEC_PATH}}
+```
+
+### API Overview
+{{else}}
+## API Overview
+
+This API documentation provides manual documentation for all endpoints. Consider adopting OpenAPI 3.0 for better tooling support.
+
+### Base URL
 {{#each ENVIRONMENTS}}
 - **{{name}}:** {{baseUrl}}
 {{/each}}
 
-## Authentication
+### Authentication
 {{#if HAS_AUTH}}
 {{AUTH_TYPE}} authentication is required for most endpoints.
 
@@ -24,10 +63,10 @@ Include the API key in the header:
 {{/if}}
 {{/if}}
 
-## API Endpoints
+### API Endpoints
 
 {{#each ENDPOINTS}}
-### {{method}} {{path}}
+#### {{method}} {{path}}
 {{#if description}}
 {{description}}
 {{/if}}
@@ -67,10 +106,10 @@ curl -X {{method}} "{{../BASE_URL}}{{path}}" \
 ---
 {{/each}}
 
-## Data Models
+### Data Models
 
 {{#each MODELS}}
-### {{name}}
+#### {{name}}
 {{#if description}}
 {{description}}
 {{/if}}
@@ -86,17 +125,32 @@ curl -X {{method}} "{{../BASE_URL}}{{path}}" \
 
 ---
 {{/each}}
+{{/if}}
 
-## Error Handling
+## Common Response Formats
 
-### Error Response Format
+### Success Response
 ```json
 {
+  "success": true,
+  "data": {
+    // Response data
+  },
+  "message": "Success message",
+  "timestamp": "2024-01-01T00:00:00Z"
+}
+```
+
+### Error Response
+```json
+{
+  "success": false,
   "error": {
     "code": "ERROR_CODE",
     "message": "Human readable error message",
     "details": {}
-  }
+  },
+  "timestamp": "2024-01-01T00:00:00Z"
 }
 ```
 
@@ -149,6 +203,27 @@ Large result sets are paginated using {{PAGINATION_TYPE}}.
 - **{{language}}:** {{#if url}}[{{name}}]({{url}}){{else}}{{name}}{{/if}}
 {{/each}}
 
+{{#if HAS_OPENAPI_SPEC}}
+## Updating the OpenAPI Spec
+
+When making API changes:
+
+1. **Update the spec first** (`{{OPENAPI_SPEC_PATH}}`)
+2. **Validate the spec**: `npx swagger-parser validate {{OPENAPI_SPEC_PATH}}`
+3. **Regenerate documentation** if using automated tools
+4. **Update client SDKs** if using code generation
+5. **Test the changes** with the updated spec
+
+### OpenAPI Tools
+- **Swagger Editor**: Edit and validate specs
+- **Swagger UI**: Generate interactive documentation
+- **ReDoc**: Alternative documentation generator  
+- **OpenAPI Generator**: Generate client SDKs and server stubs
+- **Prism**: Mock server from OpenAPI specs
+{{/if}}
+
 ---
 *Last updated: {{TIMESTAMP}}*
-*Generated with [standard-docs](https://github.com/johnplummer/standard-docs)*
+{{#if HAS_OPENAPI_SPEC}}
+*API specification: {{OPENAPI_SPEC_PATH}}*
+{{/if}}
