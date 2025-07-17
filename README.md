@@ -1,25 +1,24 @@
 # Standard Docs
 
-A comprehensive documentation system for software projects that integrates seamlessly with Claude Code.
+A comprehensive documentation system for software projects that integrates seamlessly with Claude Code via slash commands.
 
 ## Overview
 
-Standard Docs automatically generates project-specific documentation templates based on your codebase, providing a consistent documentation structure across different project types. It includes intelligent project type detection, customizable templates, and seamless integration with Claude AI for ongoing documentation maintenance.
+Standard Docs provides Claude with the knowledge and templates needed to automatically generate project-specific documentation. Instead of complex setup scripts, it uses simple slash commands that tell Claude how to analyze your project and create appropriate documentation.
 
 ## Features
 
-- **🔍 Smart Project Detection** - Automatically detects project type and frameworks
+- **🤖 Claude Slash Commands** - Three simple commands to create, update, and analyze documentation
 - **📝 Comprehensive Templates** - Ready-to-use documentation templates for different project types
-- **🤖 Claude Integration** - Built-in Claude slash commands for documentation management
-- **📊 Git History Analysis** - Automatic documentation updates based on git commits
+- **🔍 Intelligent Analysis** - Claude analyzes your project structure and creates appropriate docs
+- **📊 Git History Integration** - Updates documentation based on recent git commits
 - **🎯 Project-Specific Content** - Tailored documentation for APIs, web apps, services, mobile apps, libraries, and monorepos
-- **⚙️ Interactive Setup** - Guided setup process with customization options
-- **🔄 Automated Updates** - Keep documentation synchronized with code changes
+- **⚡ No Dependencies** - Pure template system with no Node.js dependencies required
 
 ## Supported Project Types
 
 - **Backend APIs** - REST, GraphQL, gRPC APIs with endpoint documentation
-- **Frontend Web Apps** - React, Vue, Angular applications with component libraries
+- **Frontend Web Apps** - React, Vue, Angular applications with component libraries  
 - **Services** - Microservices, background workers, and distributed systems
 - **Mobile Apps** - React Native, Flutter, and native mobile applications
 - **Libraries/Packages** - npm, PyPI, and other distributable packages
@@ -33,288 +32,119 @@ Standard Docs automatically generates project-specific documentation templates b
 curl -sSL https://raw.githubusercontent.com/johnplummer/standard-docs/main/install.sh | bash
 ```
 
-### Manual Installation
+This installs:
+- Claude slash commands in `.claude/slash-commands/`
+- Documentation templates in `.standard-docs-templates/`
+- A `.gitignore` file (if not present)
 
-1. Clone the repository:
-```bash
-git clone https://github.com/johnplummer/standard-docs.git
-cd standard-docs
-npm install
-```
+### Using the Slash Commands
 
-2. Run the installer in your project:
-```bash
-node scripts/install.js /path/to/your/project
-```
+Once installed, you can use these commands in Claude:
 
-3. Follow the interactive setup process.
+#### `/docs-create`
+Set up documentation for a new project. Claude will:
+- Analyze your project structure and detect the project type
+- Create a `docs/` directory with appropriate documentation files
+- Generate meaningful content based on your actual codebase
+- Create a `CLAUDE.md` file for future reference
 
-## Usage
+#### `/docs-update` 
+Update documentation based on git history. Claude will:
+- Analyze recent git commits since last update
+- Update relevant documentation files
+- Refresh the `RECENT_CHANGES.md` file
+- Ensure documentation stays current with code changes
 
-### Claude Slash Commands
-
-Once installed, you can use these Claude slash commands:
-
-- `/docs-create` - Set up documentation for a new project
-- `/docs-update` - Update documentation based on git history
-- `/docs-analyze` - Analyze existing documentation quality
-
-### Manual Commands
-
-```bash
-# Detect project type
-./standard-docs detect
-
-# Run interactive setup
-./standard-docs setup
-
-# Update documentation from git history
-./standard-docs update
-```
+#### `/docs-analyze`
+Analyze existing documentation quality. Claude will:
+- Review all documentation files for completeness and accuracy
+- Identify gaps and inconsistencies
+- Assess documentation against best practices
+- Provide prioritized recommendations for improvement
 
 ## Generated Documentation
 
-### Core Documentation (All Projects)
+### Core Files (All Projects)
+- `PROJECT_OVERVIEW.md` - Project description, goals, and architecture
+- `DEVELOPMENT_SETUP.md` - Environment setup and dependencies
+- `KEY_COMPONENTS.md` - Main modules and their purposes
+- `DEPLOYMENT_GUIDE.md` - Deployment processes and environments
+- `TROUBLESHOOTING.md` - Common issues and solutions
+- `RECENT_CHANGES.md` - Changelog and recent updates
 
-- **PROJECT_OVERVIEW.md** - Project purpose, goals, and architecture
-- **DEVELOPMENT_SETUP.md** - Environment setup and development workflow
-- **KEY_COMPONENTS.md** - Main modules and their responsibilities
-- **DEPLOYMENT_GUIDE.md** - Deployment processes and environments
-- **TROUBLESHOOTING.md** - Common issues and solutions
-- **RECENT_CHANGES.md** - Recent updates and changelog
+### Project-Specific Files
+- **Backend APIs**: `API_REFERENCE.md`, `DATABASE_SCHEMA.md`
+- **Frontend Apps**: `COMPONENT_LIBRARY.md`, `ROUTING_GUIDE.md`
+- **Services**: `SERVICE_ARCHITECTURE.md`
+- **Mobile Apps**: `PLATFORM_GUIDES.md`
+- **Libraries**: `PACKAGE_USAGE.md`
+- **Monorepos**: `WORKSPACE_STRUCTURE.md`, `CROSS_PACKAGE_DEPENDENCIES.md`
 
-### Project-Specific Documentation
+## How It Works
 
-#### Backend APIs
-- **API_REFERENCE.md** - Complete API documentation with endpoints
-- **DATABASE_SCHEMA.md** - Database structure and relationships
+1. **Installation** - The install script copies slash commands and templates to your project
+2. **Analysis** - Claude analyzes your project structure, dependencies, and code patterns
+3. **Generation** - Claude creates documentation using appropriate templates
+4. **Maintenance** - Use `/docs-update` to keep documentation current with code changes
 
-#### Frontend Web Apps
-- **COMPONENT_LIBRARY.md** - Reusable components and design system
-- **ROUTING_GUIDE.md** - Application routing and navigation
+## Template System
 
-#### Services
-- **SERVICE_ARCHITECTURE.md** - Service design and integration patterns
+The templates use simple variable substitution:
+- `{{PROJECT_NAME}}` - Your project name
+- `{{PROJECT_DESCRIPTION}}` - Project description
+- `{{FRAMEWORKS}}` - Detected frameworks and technologies
+- `{{TIMESTAMP}}` - Current timestamp
 
-#### Mobile Apps
-- **PLATFORM_GUIDES.md** - iOS and Android specific information
+Claude fills these variables with actual information from your project.
 
-#### Libraries
-- **PACKAGE_USAGE.md** - Installation and usage instructions
+## Requirements
 
-#### Monorepos
-- **WORKSPACE_STRUCTURE.md** - Workspace organization and management
-- **CROSS_PACKAGE_DEPENDENCIES.md** - Package relationships and dependencies
+- **Git** - Required for git history analysis
+- **Claude Code** - For running the slash commands
 
-## Configuration
+No Node.js or other dependencies are required!
 
-### CLAUDE.md
+## Manual Installation
 
-Each project gets a `CLAUDE.md` file that serves as the main configuration for Claude AI assistance:
+If you prefer not to use the install script:
 
-```markdown
-# Claude Configuration for MyProject
-
-## Project Context
-This is a backend API project built with Node.js and Express.
-
-## Documentation
-- [API Reference](docs/API_REFERENCE.md) - Complete API documentation
-- [Database Schema](docs/DATABASE_SCHEMA.md) - Database structure
-
-## Development Commands
-- Start: `npm start`
-- Test: `npm test`
-- Build: `npm run build`
-```
-
-### Template Customization
-
-Templates use Handlebars-style syntax for variable substitution:
-
-```markdown
-# {{PROJECT_NAME}} - Project Overview
-
-## Description
-{{PROJECT_DESCRIPTION}}
-
-## Technology Stack
-{{#each FRAMEWORKS}}
-- {{this}}
-{{/each}}
-```
-
-## Project Structure
-
-```
-your-project/
-├── docs/                           # Generated documentation
-│   ├── PROJECT_OVERVIEW.md
-│   ├── DEVELOPMENT_SETUP.md
-│   ├── KEY_COMPONENTS.md
-│   ├── API_REFERENCE.md           # (APIs only)
-│   ├── COMPONENT_LIBRARY.md       # (Frontend only)
-│   └── ...
-├── CLAUDE.md                      # Claude AI configuration
-├── .claude/
-│   └── slash-commands/           # Claude slash commands
-│       ├── docs-create.md
-│       ├── docs-update.md
-│       └── docs-analyze.md
-└── .standard-docs/               # Standard Docs installation
-    ├── scripts/
-    └── templates/
-```
-
-## Advanced Features
-
-### Git History Analysis
-
-Standard Docs can analyze your git history to automatically update documentation:
-
-```bash
-# Update documentation based on recent commits
-./standard-docs update
-```
-
-This analyzes:
-- Commit messages and changes
-- New features and bug fixes
-- Breaking changes and migrations
-- Dependency updates
-- Performance improvements
-
-### Project Type Detection
-
-The system intelligently detects project types by analyzing:
-- Package.json dependencies
-- File structure and patterns
-- Framework-specific files
-- Configuration files
-- Build tools and scripts
-
-### Template Engine
-
-Templates support:
-- Variable substitution
-- Conditional sections
-- Loops and iterations
-- Project-specific customization
-- Framework-specific content
-
-## Integration with CI/CD
-
-### GitHub Actions
-
-```yaml
-name: Update Documentation
-on:
-  push:
-    branches: [main]
-  pull_request:
-    branches: [main]
-
-jobs:
-  update-docs:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - name: Update Documentation
-        run: ./standard-docs update
-      - name: Commit changes
-        run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          git add docs/
-          git commit -m "Update documentation" || exit 0
-          git push
-```
-
-## Contributing
-
-### Development Setup
-
-1. Fork the repository
-2. Clone your fork: `git clone https://github.com/yourusername/standard-docs.git`
-3. Install dependencies: `npm install`
-4. Run tests: `npm test`
-
-### Adding New Project Types
-
-1. Create templates in `templates/your-project-type/`
-2. Update the project detection logic in `scripts/detect-project-type.js`
-3. Add setup questions in `scripts/setup.js`
-4. Create Claude.md template in `templates/your-project-type/CLAUDE.md`
-
-### Adding New Templates
-
-1. Create template files with Handlebars syntax
-2. Add template variables to the setup script
-3. Update the README with template descriptions
-4. Add examples to the examples directory
+1. Create `.claude/slash-commands/` directory in your project
+2. Copy the three `.md` files from the `slash-commands/` directory
+3. Copy the `templates/` directory to `.standard-docs-templates/`
+4. Run `/docs-create` in Claude
 
 ## Examples
 
-### Backend API Project
-
-```bash
-# Install Standard Docs
-curl -sSL https://raw.githubusercontent.com/johnplummer/standard-docs/main/install.sh | bash
-
-# The system detects it's a Node.js API project
-# Generates: API_REFERENCE.md, DATABASE_SCHEMA.md, etc.
-# Creates CLAUDE.md with API-specific configuration
+### Creating Documentation for a React App
 ```
-
-### Frontend Web App
-
-```bash
-# Install Standard Docs
-curl -sSL https://raw.githubusercontent.com/johnplummer/standard-docs/main/install.sh | bash
-
-# Detects React/Vue/Angular project
-# Generates: COMPONENT_LIBRARY.md, ROUTING_GUIDE.md, etc.
-# Creates CLAUDE.md with frontend-specific configuration
+/docs-create
 ```
+Claude will detect it's a React app and create:
+- Core documentation files
+- `COMPONENT_LIBRARY.md` with component documentation
+- `ROUTING_GUIDE.md` with routing information
 
-### Monorepo
-
-```bash
-# Install Standard Docs
-curl -sSL https://raw.githubusercontent.com/johnplummer/standard-docs/main/install.sh | bash
-
-# Detects monorepo structure
-# Generates: WORKSPACE_STRUCTURE.md, CROSS_PACKAGE_DEPENDENCIES.md
-# Creates CLAUDE.md with monorepo-specific configuration
+### Updating Documentation After Changes
 ```
+/docs-update
+```
+Claude will analyze recent commits and update relevant docs.
 
-## FAQ
-
-### Q: Can I use Standard Docs with existing documentation?
-A: Yes, Standard Docs will merge with existing documentation and create backups of any conflicting files.
-
-### Q: How does project type detection work?
-A: The system analyzes package.json, file structure, and configuration files to determine the project type and frameworks being used.
-
-### Q: Can I customize the templates?
-A: Yes, templates are fully customizable. You can modify existing templates or create new ones for your specific needs.
-
-### Q: Does it work with non-JavaScript projects?
-A: Yes, while optimized for JavaScript projects, Standard Docs works with any project type and can detect various languages and frameworks.
-
-### Q: How do I update documentation automatically?
-A: Use the `/docs-update` Claude slash command or run `./standard-docs update` to analyze git history and update documentation accordingly.
-
-## License
-
-MIT License - see [LICENSE](LICENSE) file for details.
+### Analyzing Documentation Quality
+```
+/docs-analyze
+```
+Claude will review all docs and provide improvement recommendations.
 
 ## Support
 
-- **GitHub Issues**: [Report bugs or request features](https://github.com/johnplummer/standard-docs/issues)
-- **Documentation**: [Full documentation](https://github.com/johnplummer/standard-docs/wiki)
-- **Examples**: [Example projects](https://github.com/johnplummer/standard-docs/tree/main/examples)
+- **GitHub**: https://github.com/johnplummer/standard-docs
+- **Issues**: https://github.com/johnplummer/standard-docs/issues
+
+## License
+
+MIT - See LICENSE file for details.
 
 ---
 
-*Standard Docs - Making project documentation effortless and consistent.*
+**Happy documenting with Claude! 🎉**

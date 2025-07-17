@@ -36,29 +36,11 @@ print_error() {
 check_prerequisites() {
     echo -e "${BLUE}🔍 Checking prerequisites...${NC}"
     
-    # Check Node.js
-    if ! command -v node &> /dev/null; then
-        print_error "Node.js is required but not installed"
-        echo "Please install Node.js 16 or higher from https://nodejs.org/"
-        exit 1
-    fi
-    
-    # Check Node.js version
-    NODE_VERSION=$(node --version | cut -d'v' -f2 | cut -d'.' -f1)
-    if [ "$NODE_VERSION" -lt 16 ]; then
-        print_error "Node.js 16 or higher is required. Current version: $(node --version)"
-        exit 1
-    fi
-    
-    # Check npm
-    if ! command -v npm &> /dev/null; then
-        print_error "npm is required but not installed"
-        exit 1
-    fi
-    
     # Check git
     if ! command -v git &> /dev/null; then
-        print_warning "Git is not installed. Some features will be limited."
+        print_error "Git is required but not installed"
+        echo "Please install git from https://git-scm.com/"
+        exit 1
     fi
     
     print_status "Prerequisites check complete"
@@ -82,155 +64,114 @@ download_standard_docs() {
     print_status "Download complete"
 }
 
-# Install dependencies
-install_dependencies() {
-    echo -e "${BLUE}📦 Installing dependencies...${NC}"
+# Setup Claude slash commands
+setup_claude_commands() {
+    echo -e "${BLUE}🎯 Setting up Claude slash commands...${NC}"
     
-    cd "$TEMP_DIR"
+    # Create Claude slash commands directory
+    CLAUDE_DIR="$TARGET_DIR/.claude"
+    SLASH_COMMANDS_DIR="$CLAUDE_DIR/slash-commands"
     
-    # Install npm dependencies
-    if ! npm install --production --silent; then
-        print_error "Failed to install dependencies"
-        exit 1
-    fi
+    mkdir -p "$SLASH_COMMANDS_DIR"
     
-    print_status "Dependencies installed"
+    # Copy slash commands
+    cp "$TEMP_DIR/slash-commands"/* "$SLASH_COMMANDS_DIR/"
+    
+    print_status "Claude slash commands installed"
 }
 
-# Run installation
-run_installation() {
-    echo -e "${BLUE}⚙️ Running installation...${NC}"
+# Create templates directory
+setup_templates() {
+    echo -e "${BLUE}📝 Setting up templates...${NC}"
     
-    cd "$TEMP_DIR"
+    # Create templates directory
+    TEMPLATES_DIR="$TARGET_DIR/.standard-docs-templates"
+    mkdir -p "$TEMPLATES_DIR"
     
-    # Run the installer
-    if ! node scripts/install.js "$TARGET_DIR"; then
-        print_error "Installation failed"
-        exit 1
-    fi
+    # Copy templates
+    cp -r "$TEMP_DIR/templates"/* "$TEMPLATES_DIR/"
     
-    print_status "Installation complete"
+    print_status "Templates installed"
 }
 
-# Setup local scripts
-setup_local_scripts() {
-    echo -e "${BLUE}🔧 Setting up local scripts...${NC}"
-    
-    # Create local scripts directory
-    LOCAL_SCRIPTS_DIR="$TARGET_DIR/.standard-docs"
-    mkdir -p "$LOCAL_SCRIPTS_DIR"
-    
-    # Copy scripts
-    cp -r "$TEMP_DIR/scripts" "$LOCAL_SCRIPTS_DIR/"
-    cp -r "$TEMP_DIR/templates" "$LOCAL_SCRIPTS_DIR/"
-    
-    # Create package.json for local installation
-    cat > "$LOCAL_SCRIPTS_DIR/package.json" << EOF
-{
-  "name": "standard-docs-local",
-  "version": "1.0.0",
-  "private": true,
-  "scripts": {
-    "detect": "node scripts/detect-project-type.js",
-    "setup": "node scripts/setup.js",
-    "update": "node scripts/update-from-git.js"
-  }
-}
+# Create gitignore if it doesn't exist
+create_gitignore() {
+    if [ ! -f "$TARGET_DIR/.gitignore" ]; then
+        echo -e "${BLUE}📄 Creating .gitignore...${NC}"
+        
+        cat > "$TARGET_DIR/.gitignore" << 'EOF'
+# Dependencies
+node_modules/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Editor directories and files
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Environment variables
+.env
+.env.local
+
+# Documentation generation output
+.standard-docs-temp/
 EOF
-    
-    # Install dependencies locally
-    cd "$LOCAL_SCRIPTS_DIR"
-    npm install --production --silent
-    
-    print_status "Local scripts setup complete"
-}
-
-# Create convenience commands
-create_convenience_commands() {
-    echo -e "${BLUE}🎯 Creating convenience commands...${NC}"
-    
-    # Create standard-docs command
-    cat > "$TARGET_DIR/standard-docs" << 'EOF'
-#!/bin/bash
-SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
-cd "$SCRIPT_DIR/.standard-docs"
-
-case "$1" in
-    "detect")
-        node scripts/detect-project-type.js
-        ;;
-    "setup")
-        node scripts/setup.js
-        ;;
-    "update")
-        node scripts/update-from-git.js
-        ;;
-    *)
-        echo "Usage: $0 {detect|setup|update}"
-        echo "  detect - Detect project type"
-        echo "  setup  - Run interactive setup"
-        echo "  update - Update documentation from git history"
-        ;;
-esac
-EOF
-    
-    chmod +x "$TARGET_DIR/standard-docs"
-    
-    print_status "Convenience commands created"
+        
+        print_status ".gitignore created"
+    else
+        print_status ".gitignore already exists"
+    fi
 }
 
 # Cleanup
 cleanup() {
-    echo -e "${BLUE}🧹 Cleaning up...${NC}"
-    
     if [ -d "$TEMP_DIR" ]; then
         rm -rf "$TEMP_DIR"
     fi
-    
-    print_status "Cleanup complete"
 }
 
 # Print usage instructions
 print_usage() {
     echo -e "\n${BLUE}📖 Usage Instructions:${NC}"
     echo
-    echo -e "${GREEN}Available Commands:${NC}"
-    echo "  ./standard-docs detect  - Detect project type"
-    echo "  ./standard-docs setup   - Run interactive setup"
-    echo "  ./standard-docs update  - Update documentation from git history"
-    echo
-    echo -e "${GREEN}Claude Slash Commands:${NC}"
+    echo -e "${GREEN}Claude Slash Commands Available:${NC}"
     echo "  /docs-create  - Set up documentation for a new project"
     echo "  /docs-update  - Update documentation based on git history"
     echo "  /docs-analyze - Analyze existing documentation quality"
     echo
-    echo -e "${GREEN}Documentation Structure:${NC}"
-    echo "  docs/                    - All project documentation"
-    echo "  CLAUDE.md               - Claude AI configuration"
+    echo -e "${GREEN}What was installed:${NC}"
     echo "  .claude/slash-commands/ - Claude slash commands"
-    echo "  .standard-docs/         - Standard Docs installation"
+    echo "  .standard-docs-templates/ - Documentation templates"
+    echo "  .gitignore - Git ignore file (if not present)"
     echo
     echo -e "${GREEN}Next Steps:${NC}"
-    echo "1. Review and customize the generated documentation"
-    echo "2. Add project-specific information to fill in templates"
-    echo "3. Set up automated documentation updates in CI/CD"
-    echo "4. Use Claude slash commands for ongoing documentation maintenance"
+    echo "1. In Claude, run: /docs-create"
+    echo "2. Claude will analyze your project and create documentation"
+    echo "3. Review and customize the generated documentation"
+    echo "4. Use /docs-update to keep documentation current"
+    echo "5. Use /docs-analyze to assess documentation quality"
     echo
     echo -e "${GREEN}Support:${NC}"
     echo "  GitHub: https://github.com/johnplummer/standard-docs"
     echo "  Issues: https://github.com/johnplummer/standard-docs/issues"
     echo
-    echo -e "${GREEN}🎉 Happy documenting!${NC}"
+    echo -e "${GREEN}🎉 Happy documenting with Claude!${NC}"
 }
 
 # Main installation flow
 main() {
     check_prerequisites
     download_standard_docs
-    install_dependencies
-    run_installation
-    setup_local_scripts
-    create_convenience_commands
+    setup_claude_commands
+    setup_templates
+    create_gitignore
     cleanup
     
     echo -e "\n${GREEN}✅ Standard Docs installation complete!${NC}"
