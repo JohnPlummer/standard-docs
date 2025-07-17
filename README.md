@@ -159,7 +159,7 @@ Claude will review all docs and provide improvement recommendations.
 
 ## License
 
-MIT - See LICENSE file for details.
+MIT - See [LICENSE](LICENSE) file for details.
 
 ---
 
