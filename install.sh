@@ -17,6 +17,12 @@ REPO_URL="https://github.com/johnplummer/standard-docs"
 TEMP_DIR="/tmp/standard-docs-install"
 TARGET_DIR="${1:-$(pwd)}"
 
+# Check if we're in an interactive terminal
+INTERACTIVE=true
+if [ ! -t 0 ]; then
+    INTERACTIVE=false
+fi
+
 echo -e "${BLUE}🚀 Installing Standard Docs...${NC}\n"
 
 # Function to print colored output
@@ -80,9 +86,16 @@ setup_claude_commands() {
         echo -e "${YELLOW}The following files will be overwritten:${NC}"
         ls -1 "$SLASH_COMMANDS_DIR"
         echo
-        read -p "Continue and overwrite existing slash commands? (y/n): " -n 1 -r
-        echo
-        if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+        
+        if [ "$INTERACTIVE" = true ]; then
+            read -p "Continue and overwrite existing slash commands? (y/n): " -n 1 -r
+            echo
+            if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+                print_status "Skipped slash commands installation"
+                return
+            fi
+        else
+            echo -e "${YELLOW}Non-interactive mode detected. Skipping to avoid overwriting existing files.${NC}"
             print_status "Skipped slash commands installation"
             return
         fi
@@ -108,9 +121,16 @@ setup_templates() {
         echo -e "${YELLOW}The following directories/files will be overwritten:${NC}"
         ls -1 "$TEMPLATES_DIR"
         echo
-        read -p "Continue and overwrite existing templates? (y/n): " -n 1 -r
-        echo
-        if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+        
+        if [ "$INTERACTIVE" = true ]; then
+            read -p "Continue and overwrite existing templates? (y/n): " -n 1 -r
+            echo
+            if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+                print_status "Skipped templates installation"
+                return
+            fi
+        else
+            echo -e "${YELLOW}Non-interactive mode detected. Skipping to avoid overwriting existing files.${NC}"
             print_status "Skipped templates installation"
             return
         fi
@@ -133,6 +153,11 @@ cleanup() {
 # Print usage instructions
 print_usage() {
     echo -e "\n${BLUE}📖 Usage Instructions:${NC}"
+    echo
+    echo -e "${GREEN}Installation Methods:${NC}"
+    echo "  Interactive: bash <(curl -sSL https://raw.githubusercontent.com/johnplummer/standard-docs/main/install.sh)"
+    echo "  Non-interactive: curl -sSL https://raw.githubusercontent.com/johnplummer/standard-docs/main/install.sh | bash"
+    echo "  Note: Non-interactive mode will skip existing files to avoid overwriting"
     echo
     echo -e "${GREEN}Claude Slash Commands Available:${NC}"
     echo "  /docs-create  - Set up documentation for a new project"
@@ -170,7 +195,7 @@ main() {
 }
 
 # Handle interruption
-trap cleanup EXIT
+trap cleanup exit
 
 # Run main installation
 main

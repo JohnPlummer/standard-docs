@@ -30,13 +30,19 @@ Standard Docs provides Claude with the knowledge and templates needed to automat
 ### One-Line Installation
 
 ```bash
-curl -sSL https://raw.githubusercontent.com/johnplummer/standard-docs/main/install.sh | bash
+bash <(curl -sSL https://raw.githubusercontent.com/johnplummer/standard-docs/main/install.sh)
 ```
 
 This installs:
 
 - Claude slash commands in `.claude/commands/`
 - Documentation templates in `.standard-docs-templates/`
+
+**Alternative (non-interactive):**
+```bash
+curl -sSL https://raw.githubusercontent.com/johnplummer/standard-docs/main/install.sh | bash
+```
+Note: Non-interactive mode will skip existing files to avoid overwriting.
 
 ### Using the Slash Commands
 
