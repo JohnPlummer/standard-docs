@@ -13,6 +13,7 @@ Standard Docs provides Claude with the knowledge and templates needed to automat
 - **🔍 Intelligent Analysis** - Claude analyzes your project structure and creates appropriate docs
 - **📊 Git History Integration** - Updates documentation based on recent git commits
 - **🎯 Project-Specific Content** - Tailored documentation for APIs, web apps, services, mobile apps, libraries, and monorepos
+- **🔄 CLAUDE.md Deduplication** - Automatically prevents information duplication between CLAUDE.md and docs/
 - **⚡ No Dependencies** - Pure template system with no Node.js dependencies required
 
 ## Supported Project Types
@@ -48,7 +49,8 @@ Set up documentation for a new project. Claude will:
 - Analyze your project structure and detect the project type
 - Create a `docs/` directory with appropriate documentation files
 - Generate meaningful content based on your actual codebase
-- Create a `CLAUDE.md` file for future reference
+- Create or update `CLAUDE.md` file, avoiding duplication with docs/
+- Check existing CLAUDE.md for duplicated content and ask for approval before changes
 
 #### `/docs-update`
 
@@ -58,6 +60,7 @@ Update documentation based on git history. Claude will:
 - Update relevant documentation files
 - Refresh the `RECENT_CHANGES.md` file
 - Ensure documentation stays current with code changes
+- Check CLAUDE.md for duplicated content and ask for approval before changes
 
 #### `/docs-analyze`
 
@@ -66,6 +69,7 @@ Analyze existing documentation quality. Claude will:
 - Review all documentation files for completeness and accuracy
 - Identify gaps and inconsistencies
 - Assess documentation against best practices
+- Analyze CLAUDE.md for duplicated content with docs/ directory
 - Provide prioritized recommendations for improvement
 
 ## Generated Documentation

@@ -49,6 +49,7 @@ ls -la .claude/commands/
    - `/docs-create`: Creates new documentation from templates
    - `/docs-update`: Updates documentation from git commits
    - `/docs-analyze`: Analyzes documentation quality and coverage
+   - **CLAUDE.md Deduplication**: See README.md for detailed information about the deduplication feature
 
 ### Template Variable System
 
@@ -80,6 +81,7 @@ Returns highest confidence match with detailed reasoning.
 - **Claude Code integration** - Works via slash commands
 - **Git integration** - Analyzes git history for documentation updates
 - **OpenAPI 3.0 support** - Enhanced API documentation for backend projects
+- **CLAUDE.md Deduplication** - See README.md for details
 
 ## Working with Templates
 
@@ -97,3 +99,7 @@ When modifying templates:
 - Integrates with Claude Code for documentation tasks
 - Analyzes git history for documentation updates
 - Supports OpenAPI specifications for enhanced API documentation
+
+## CLAUDE.md Deduplication System
+
+For detailed information about how the CLAUDE.md deduplication feature works, see the README.md file.
